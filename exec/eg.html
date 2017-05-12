@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+		/**
+		 *  —— undefined表示"缺少值",就是此处应该有一个值,但是还没有定义。
+		 *     它会被转换成数字,而转换结果为NaN,NaN不等于任何值,
+		 *     所以undefined != false;
+		 *  —— 对于null来说,null表示"没有对象"，即该处不应该有值。
+		 *     首先调用Object.valueOf方法返回基本类型值之后在比较,
+		 *     所以null != false
+		 *  —— 最后一点是undefined == null,这是ECMA-262标准 11.9.3 节的规定
+		 * */
+		
+			console.log( {}=={} ); //false
+		
+			var A = new String("a");
+    		var B = new String("a");
+    		console.log(A == B);  //false
+    		var C = A;
+    		console.log(A == C);  //true
+		</script>
+	</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+		//1、模块定义 —— IIFE声明立即执行；避免命名冲突 与 变量污染
+			var box = (function(){
+				var age = 17;
+				function getMyColor(){
+					console.log("color,age: " + age);
+				}
+				function getMySize(){
+					console.log("size,age: " + age);
+				}
+				return {
+					getMyColor : getMyColor,
+					getMySize : getMySize
+				}
+			})();
+//			console.log(box.age); //undefined
+		
+		//2、模块“放大”
+			console.log(box);
+			setTimeout(function(){
+				(function(b){
+					b.reSize = function(){
+						console.log("-add reSize");
+					}
+					return b;
+				})(box);
+				console.log(box);
+			}, 2000);
+			
+		</script>
+	</body>
+</html>

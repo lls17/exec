@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+		/**
+		 * “能做并不意味着应该做”。
+		 * 
+		 * 1、全局命名空间污染：总是将代码包裹在一个立即的函数表达式里面，形成一个独立的模块。
+		 *  —— 若用到全局变量应该通过变量传递的方式，让立即执行函数的函数体在调用时，
+		 *     能以局部变量的形式调用，在一定程度上提升程序性能。
+		 *  —— 应该在立即执行函数的形参里加上undefined，在最后一个位置，
+		 *     这是因为ES3里undefined是可以读写的，如果在全局位置更改undefined的值，你的代码可能得不到逾期的结果。 
+		 *  —— 另外推荐在立即执行函数开始跟结尾都添加上分号，避免在合并时因为别人的代码不规范而影响到我们自己的代码。
+		 * 
+		 * */
+		
+			;(function($, window, document, undefined){
+				
+			}(jQuery, window, document));
+			
+		/**
+		 * 2、for循环 —— 保存arr长度，以避免每次循环都要重新计算数组长度
+		 * */
+			for(var i=0,len=arr.length; i<len; i++){
+				
+			}
+			
+		/**
+		 * 3、重复的DOM操作 —— 使用一个变量来进行接收很有必要，而不是频繁的去操作dom树，这对性能与代码的整洁及易维护性带来不好的影响。
+		 *  —— 使用end()来串联，回到最近的一个"破坏性"操作之前。即，将匹配的元素列表变为前一次的状态。
+		 *     所谓的"破坏性"就是指任何改变所匹配的jQuery元素的操作。
+		 * 	         这包括在 Traversing 中任何返回一个jQuery对象的函数
+		 *       --'add', 'andSelf', 'children', 'filter', 'find', 
+		 *       --'map', 'next', 'nextAll', 'not', 'parent', 'parents', 
+		 *       --'prev', 'prevAll', 'siblings' and 'slice'
+		 *       -- 再加上 Manipulation 中的 'clone'。
+		 * */
+			//不推荐
+//			$('.myDiv').find('.span1').text('1');
+//		    $('.myDiv').find('.span2').text('2');
+//		    $('.myDiv').find('.span3').text('3');
+
+			//推荐
+			var $myDiv = $('.myDiv');
+			$myDiv.find('.span1').text('1')
+				.end().find('.span2').text('2')
+           		.end().find('.span3').text('3');
+           		
+        /**
+		 * 4、注释规范 —— 尽量描述写代码时的思路，而不是代码做了什么。
+		 * */
+			/*
+		     * 根据订单id获取订单详细数据
+		     * 
+		     * @param  {[number]} id [订单ID]
+		     * @return {[order]}    [订单详细信息]
+		     */
+		    function getOrderByID(id){
+		        var order;
+		        //...
+		        return order;
+		    }
+		</script>
+	</body>
+</html>
